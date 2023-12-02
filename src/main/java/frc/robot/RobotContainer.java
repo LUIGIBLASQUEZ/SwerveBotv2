@@ -37,8 +37,8 @@ public class RobotContainer {
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
 
   // The driver's controller
-  XboxController m_joystick = new XboxController(OIConstants.kDriverControllerPort);
-  //Joystick m_joystick = new Joystick(OIConstants.kDriverControllerPort);
+  //XboxController m_joystick = new XboxController(OIConstants.kDriverControllerPort);
+  Joystick m_joystick = new Joystick(OIConstants.kDriverControllerPort);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -53,9 +53,9 @@ public class RobotContainer {
         // Turning is controlled by the X axis of the right stick.
         new RunCommand(
             () -> m_robotDrive.drive(
-                -MathUtil.applyDeadband(m_joystick.getLeftX(), OIConstants.kDriveDeadband),
-                -MathUtil.applyDeadband(m_joystick.getLeftY(), OIConstants.kDriveDeadband),
-                -MathUtil.applyDeadband(m_joystick.getRightX(), OIConstants.kDriveDeadband),
+                -MathUtil.applyDeadband(m_joystick.getX(), OIConstants.kDriveDeadband),
+                -MathUtil.applyDeadband(m_joystick.getY(), OIConstants.kDriveDeadband),
+                -MathUtil.applyDeadband(m_joystick.getTwistChannel(), OIConstants.kDriveDeadband),
                 true, true),
             m_robotDrive));
   }
