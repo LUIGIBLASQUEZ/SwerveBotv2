@@ -54,9 +54,9 @@ public class RobotContainer {
         // Turning is controlled by the X axis of the right stick.
         new RunCommand(
             () -> m_robotDrive.drive(
+                -MathUtil.applyDeadband(m_joystick.getRightY(), OIConstants.kDriveDeadband),
                 -MathUtil.applyDeadband(m_joystick.getLeftY(), OIConstants.kDriveDeadband),
                 -MathUtil.applyDeadband(m_joystick.getLeftX(), OIConstants.kDriveDeadband),
-                -MathUtil.applyDeadband(m_joystick.getRightX(), OIConstants.kDriveDeadband),
                 true, true),
             m_robotDrive));
   }
