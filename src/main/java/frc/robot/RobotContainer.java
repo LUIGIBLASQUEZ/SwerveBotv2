@@ -38,8 +38,9 @@ public class RobotContainer {
 
   // The driver's controller
   //XboxController m_joystick = new XboxController(OIConstants.kDriverControllerPort);
-  //Joystick m_joystick = new Joystick(OIConstants.kDriverControllerPort);
-  XboxController m_joystick = new XboxController(OIConstants.kDriverControllerPort);
+  Joystick m_joystick1 = new Joystick(OIConstants.kDriverControllerPort);
+  Joystick m_joystick2 = new Joystick(OIConstants.kDriverControllerPort2);
+  //XboxController m_joystick = new XboxController(OIConstants.kDriverControllerPort);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -54,9 +55,9 @@ public class RobotContainer {
         // Turning is controlled by the X axis of the right stick.
         new RunCommand(
             () -> m_robotDrive.drive(
-                -MathUtil.applyDeadband(m_joystick.getLeftY(), OIConstants.kDriveDeadband),
-                -MathUtil.applyDeadband(m_joystick.getLeftX(), OIConstants.kDriveDeadband),
-                -MathUtil.applyDeadband(m_joystick.getRightX(), OIConstants.kDriveDeadband),
+                -MathUtil.applyDeadband(m_joystick1.getY(), OIConstants.kDriveDeadband),
+                -MathUtil.applyDeadband(m_joystick1.getX(), OIConstants.kDriveDeadband),
+                -MathUtil.applyDeadband(m_joystick2.getZ(), OIConstants.kDriveDeadband),
                 true, true),
             m_robotDrive));
   }
@@ -71,7 +72,7 @@ public class RobotContainer {
    * {@link JoystickButton}.
    */
   private void configureButtonBindings() {
-    new JoystickButton(m_joystick, Button.kR1.value)
+    new JoystickButton(m_joystick1, Button.kR1.value)
         .whileTrue(new RunCommand(
             () -> m_robotDrive.setX(),
             m_robotDrive));
