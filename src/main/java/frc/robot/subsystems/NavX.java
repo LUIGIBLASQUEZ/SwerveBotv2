@@ -2,22 +2,21 @@ package frc.robot.subsystems;
 
 // Imports
 import com.kauailabs.navx.frc.AHRS;
-
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class NavX extends SubsystemBase {
-    /** Creates a new NavX. */
+    
+    // Creates new NavX
     AHRS navX = new AHRS(SPI.Port.kMXP);
 
     public NavX() {
         navX.calibrate();
     }
 
-    @Override
+    // This method will be called once per scheduler run
     public void periodic() {
-        // This method will be called once per scheduler run
     }
 
     // Grabs the yaw
