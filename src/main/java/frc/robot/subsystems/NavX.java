@@ -11,6 +11,8 @@ public class NavX extends SubsystemBase {
     // Creates new NavX
     AHRS navX = new AHRS(SPI.Port.kMXP);
 
+    public static NavX navx;
+
     public NavX() {
         navX.calibrate();
     }
