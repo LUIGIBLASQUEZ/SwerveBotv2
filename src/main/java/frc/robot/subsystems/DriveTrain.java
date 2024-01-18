@@ -52,7 +52,7 @@ public class DriveTrain extends SubsystemBase {
    * 
    */
   //public static NavX navx;
-  private final AHRS m_navx = new AHRS();
+  private final AHRS m_navx = new AHRS(SPI.Port.kMXP);
 
   // Slew rate variables
   private double m_currentRotation = 0.0;
