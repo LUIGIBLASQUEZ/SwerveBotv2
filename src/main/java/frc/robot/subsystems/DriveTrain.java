@@ -236,7 +236,7 @@ public class DriveTrain extends SubsystemBase {
    * 
    */
   public double getHeading() {
-    return Math.IEEEremainder(m_navx.getAngle(), 360);
+    return Math.IEEEremainder(-m_navx.getAngle(), 360);
   }
 
   // TODO: check if this works?
