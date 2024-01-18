@@ -5,6 +5,7 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Robot;
 
 public class NavX extends SubsystemBase {
     
@@ -33,7 +34,7 @@ public class NavX extends SubsystemBase {
 
     // The Rotation2D is the big brother of fused heading
     public Rotation2d getRotation2d() {
-        return Rotation2d.fromDegrees(navX.getYaw());
+        return Rotation2d.fromDegrees(Robot.navx.getYaw());
     }
 
     // Grabs the roll
