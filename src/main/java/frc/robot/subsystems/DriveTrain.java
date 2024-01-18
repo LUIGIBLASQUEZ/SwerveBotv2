@@ -52,6 +52,7 @@ public class DriveTrain extends SubsystemBase {
    * 
    */
   private final AHRS m_navx = new AHRS(SPI.Port.kMXP);
+  private final DriveTrain driveSubsystem = new DriveTrain();
 
   // Slew rate variables
   private double m_currentRotation = 0.0;
@@ -182,6 +183,7 @@ public class DriveTrain extends SubsystemBase {
     double ySpeedDelivered = ySpeedCommanded * DriveConstants.kMaxSpeedMetersPerSecond;
     double rotDelivered = m_currentRotation * DriveConstants.kMaxAngularSpeed;
 
+    /*
     var swerveModuleStates = DriveConstants.kDriveKinematics.toSwerveModuleStates(
         fieldRelative
             ? ChassisSpeeds.fromFieldRelativeSpeeds(xSpeedDelivered, ySpeedDelivered, rotDelivered, Rotation2d.fromDegrees(m_navx.getAngle()))
@@ -192,6 +194,21 @@ public class DriveTrain extends SubsystemBase {
     m_frontRight.setDesiredState(swerveModuleStates[1]);
     m_rearLeft.setDesiredState(swerveModuleStates[2]);
     m_rearRight.setDesiredState(swerveModuleStates[3]);
+    */
+
+    ChassisSpeeds chassisSpeeds;
+        if (fieldRelative = true) {
+            // Relative to field
+            chassisSpeeds = ChassisSpeeds.fromFieldRelativeSpeeds(
+                    xSpeed, ySpeed, rot, driveSubsystem.getRotation2d());
+        } else {
+            // Relative to robot
+            chassisSpeeds = new ChassisSpeeds(xSpeed, ySpeed, rot);
+        }
+        SwerveModuleState[] moduleStates = DriveConstants.kDriveKinematics.toSwerveModuleStates(chassisSpeeds);
+
+        driveSubsystem.setModuleStates(moduleStates);
+
   }
 
   /* Drive command, stop function
