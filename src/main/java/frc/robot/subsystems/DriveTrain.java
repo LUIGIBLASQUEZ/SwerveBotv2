@@ -10,9 +10,9 @@ import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import frc.robot.Robot;
 import frc.robot.SwerveUtils;
 // Position imports
-import frc.robot.subsystems.NavX;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 // Constants
@@ -67,7 +67,7 @@ public class DriveTrain extends SubsystemBase {
    */
   SwerveDriveOdometry m_odometry = new SwerveDriveOdometry(
       DriveConstants.kDriveKinematics,
-      NavX.navx.getRotation2d(),
+      Robot.navx.getRotation2d(),
       new SwerveModulePosition[] {
           m_frontLeft.getPosition(),
           m_frontRight.getPosition(),
@@ -82,7 +82,7 @@ public class DriveTrain extends SubsystemBase {
   // Updates odometry periodically
   public void periodic() {
     m_odometry.update(
-        NavX.navx.getRotation2d(),
+        Robot.navx.getRotation2d(),
         new SwerveModulePosition[] {
             m_frontLeft.getPosition(),
             m_frontRight.getPosition(),
@@ -99,7 +99,7 @@ public class DriveTrain extends SubsystemBase {
   // Resets odometry to a specific pose
   public void resetOdometry(Pose2d pose) {
     m_odometry.resetPosition(
-        NavX.navx.getRotation2d(),
+        Robot.navx.getRotation2d(),
         new SwerveModulePosition[] {
             m_frontLeft.getPosition(),
             m_frontRight.getPosition(),
@@ -178,7 +178,7 @@ public class DriveTrain extends SubsystemBase {
 
     var swerveModuleStates = DriveConstants.kDriveKinematics.toSwerveModuleStates(
         fieldRelative
-            ? ChassisSpeeds.fromFieldRelativeSpeeds(xSpeedDelivered, ySpeedDelivered, rotDelivered, NavX.navx.getRotation2d())
+            ? ChassisSpeeds.fromFieldRelativeSpeeds(xSpeedDelivered, ySpeedDelivered, rotDelivered, Robot.navx.getRotation2d())
             : new ChassisSpeeds(xSpeedDelivered, ySpeedDelivered, rotDelivered));
     SwerveDriveKinematics.desaturateWheelSpeeds(
         swerveModuleStates, DriveConstants.kMaxSpeedMetersPerSecond);
@@ -222,7 +222,7 @@ public class DriveTrain extends SubsystemBase {
 
   // Zeros robot heading
   public void zeroHeading() {
-    NavX.navx.resetYaw();
+    Robot.navx.resetYaw();
   }
 
   /* Returns the heading of the robot
@@ -230,7 +230,7 @@ public class DriveTrain extends SubsystemBase {
    * 
    */
   public double getHeading() {
-    return NavX.navx.getRotation2d().getDegrees();
+    return Robot.navx.getRotation2d().getDegrees();
   }
 
   // TODO: check if this works?
@@ -239,6 +239,6 @@ public class DriveTrain extends SubsystemBase {
    * 
    */
   public double getTurnRate() {
-    return NavX.navx.getYaw() * (DriveConstants.kGyroReversed ? -1.0 : 1.0);
+    return Robot.navx.getYaw() * (DriveConstants.kGyroReversed ? -1.0 : 1.0);
   }
 }
