@@ -98,6 +98,10 @@ public class DriveTrain extends SubsystemBase {
     return m_odometry.getPoseMeters();
   }
 
+  public Rotation2d getRotation2d() {
+    return Rotation2d.fromDegrees(getHeading());
+  }
+
   // Resets odometry to a specific pose
   public void resetOdometry(Pose2d pose) {
     m_odometry.resetPosition(
@@ -232,7 +236,7 @@ public class DriveTrain extends SubsystemBase {
    * 
    */
   public double getHeading() {
-    return Rotation2d.fromDegrees(m_navx.getAngle()).getDegrees();
+    return Math.IEEEremainder(m_navx.getAngle(), 360);
   }
 
   // TODO: check if this works?
