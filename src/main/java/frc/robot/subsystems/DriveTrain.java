@@ -51,7 +51,6 @@ public class DriveTrain extends SubsystemBase {
    * NavX Gyro requires 3rd party vendor libraries
    * 
    */
-  //public static NavX navx;
   private final AHRS m_navx = new AHRS(SPI.Port.kMXP);
 
   // Slew rate variables
