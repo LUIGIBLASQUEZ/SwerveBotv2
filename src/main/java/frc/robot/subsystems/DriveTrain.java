@@ -15,6 +15,8 @@ import frc.robot.SwerveUtils;
 //import frc.robot.subsystems.NavX;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.SPI;
 // Constants
 import frc.robot.Constants.DriveConstants;
 
@@ -50,7 +52,7 @@ public class DriveTrain extends SubsystemBase {
    * 
    */
   //public static NavX navx;
-  private final NavX m_navx = new NavX();
+  private final AHRS m_navx = new AHRS();
 
   // Slew rate variables
   private double m_currentRotation = 0.0;
@@ -68,7 +70,7 @@ public class DriveTrain extends SubsystemBase {
    */
   SwerveDriveOdometry m_odometry = new SwerveDriveOdometry(
       DriveConstants.kDriveKinematics,
-      m_navx.getRotation2d(),
+      Rotation2d.fromDegrees(m_navx.getAngle()),
       new SwerveModulePosition[] {
           m_frontLeft.getPosition(),
           m_frontRight.getPosition(),
@@ -83,7 +85,7 @@ public class DriveTrain extends SubsystemBase {
   // Updates odometry periodically
   public void periodic() {
     m_odometry.update(
-        m_navx.getRotation2d(),
+        Rotation2d.fromDegrees(m_navx.getAngle()),
         new SwerveModulePosition[] {
             m_frontLeft.getPosition(),
             m_frontRight.getPosition(),
@@ -100,7 +102,7 @@ public class DriveTrain extends SubsystemBase {
   // Resets odometry to a specific pose
   public void resetOdometry(Pose2d pose) {
     m_odometry.resetPosition(
-        m_navx.getRotation2d(),
+        Rotation2d.fromDegrees(m_navx.getAngle()),
         new SwerveModulePosition[] {
             m_frontLeft.getPosition(),
             m_frontRight.getPosition(),
@@ -179,7 +181,7 @@ public class DriveTrain extends SubsystemBase {
 
     var swerveModuleStates = DriveConstants.kDriveKinematics.toSwerveModuleStates(
         fieldRelative
-            ? ChassisSpeeds.fromFieldRelativeSpeeds(xSpeedDelivered, ySpeedDelivered, rotDelivered, m_navx.getRotation2d())
+            ? ChassisSpeeds.fromFieldRelativeSpeeds(xSpeedDelivered, ySpeedDelivered, rotDelivered, Rotation2d.fromDegrees(m_navx.getAngle()))
             : new ChassisSpeeds(xSpeedDelivered, ySpeedDelivered, rotDelivered));
     SwerveDriveKinematics.desaturateWheelSpeeds(
         swerveModuleStates, DriveConstants.kMaxSpeedMetersPerSecond);
@@ -223,7 +225,7 @@ public class DriveTrain extends SubsystemBase {
 
   // Zeros robot heading
   public void zeroHeading() {
-    m_navx.resetYaw();
+    m_navx.reset();
   }
 
   /* Returns the heading of the robot
@@ -231,7 +233,7 @@ public class DriveTrain extends SubsystemBase {
    * 
    */
   public double getHeading() {
-    return m_navx.getRotation2d().getDegrees();
+    return Rotation2d.fromDegrees(m_navx.getAngle()).getDegrees();
   }
 
   // TODO: check if this works?
