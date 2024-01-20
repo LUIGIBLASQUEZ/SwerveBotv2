@@ -56,9 +56,9 @@ public class RobotContainer {
 
         new RunCommand(
             () -> m_robotDrive.drive(
-                -MathUtil.applyDeadband(m_joystick1.getY(), OIConstants.kDriveDeadband),
-                -MathUtil.applyDeadband(m_joystick1.getX(), OIConstants.kDriveDeadband),
-                -MathUtil.applyDeadband(m_joystick2.getZ(), OIConstants.kDriveDeadband),
+                -MathUtil.applyDeadband(m_joystick1.getY()*1.5, OIConstants.kDriveDeadband),
+                -MathUtil.applyDeadband(m_joystick1.getX()*1.0, OIConstants.kDriveDeadband),
+                -MathUtil.applyDeadband(m_joystick2.getZ()*2, OIConstants.kDriveDeadband),
                 true, true),
             m_robotDrive));
   }
