@@ -17,7 +17,7 @@ public final class Constants {
   public static final class DriveConstants {
     
     // Driving parameters
-    public static final double kMaxSpeedMetersPerSecond = 10.0; //set to 4.0
+    public static final double kMaxSpeedMetersPerSecond = 4.0; //set to 4.0
     public static final double kMaxAngularSpeed = 2 * Math.PI; // radians per second
 
     // Slew rates
