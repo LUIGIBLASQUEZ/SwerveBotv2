@@ -20,6 +20,7 @@ import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Chuck;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
@@ -35,12 +36,13 @@ import java.util.List;
 public class RobotContainer {
   // The robot's subsystems
   private final DriveTrain m_robotDrive = new DriveTrain();
+  private final Chuck m_output = new Chuck();
 
   // The driver's controller
   //XboxController m_joystick = new XboxController(OIConstants.kDriverControllerPort);
   Joystick m_joystick1 = new Joystick(OIConstants.kDriverControllerPort);
   Joystick m_joystick2 = new Joystick(OIConstants.kDriverControllerPort2);
-  //XboxController m_joystick = new XboxController(OIConstants.kDriverControllerPort);
+  XboxController m_operator = new XboxController(OIConstants.kDriverControllerPort3);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -73,14 +75,30 @@ public class RobotContainer {
    * {@link JoystickButton}.
    */
   private void configureButtonBindings() {
+
+            // This button for the DRIVER will stop the robot's drive
     new JoystickButton(m_joystick1, Button.kR1.value)
         .whileTrue(new RunCommand(
             () -> m_robotDrive.setX(),
             m_robotDrive));
+
+            // This button for the DRIVER will zero the gyro's angle
     new JoystickButton(m_joystick1, 3)
         .whileTrue(new RunCommand(
             () -> m_robotDrive.zeroHeading(),
             m_robotDrive));
+
+            // This button for the OPERATOR will shoot the speaker motor
+    new JoystickButton(m_operator, 6)
+        .whileTrue(new RunCommand(
+            () -> m_output.SpeakerShoot(),
+            m_output));
+
+            // This button for the OPERATOR will shoot the amp motor    
+    new JoystickButton(m_operator, 5)
+        .whileTrue(new RunCommand(
+            () -> m_output.AmpShoot(),
+            m_output));
   }
 
   /**
