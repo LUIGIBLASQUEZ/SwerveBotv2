@@ -124,6 +124,11 @@ public final class Constants {
     public static final int ampspeed = 1;
   }
 
+  public static final class IntakeConstants {
+    public static final int id13 = 13;
+    public static final double RingPick = 2;
+  }
+
   public static final class AutoConstants {
     public static final double kMaxSpeedMetersPerSecond = 3;
     public static final double kMaxAccelerationMetersPerSecondSquared = 3;
