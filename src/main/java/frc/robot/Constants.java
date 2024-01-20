@@ -116,6 +116,14 @@ public final class Constants {
     public static final double kDriveDeadband = 0.05;
   }
 
+  public static final class ChuckConstants {
+    public static final int id10 = 10;
+    public static final int id11 = 11;
+    public static final int id12 = 12;
+    public static final int speakerspeed = 3;
+    public static final int ampspeed = 1;
+  }
+
   public static final class AutoConstants {
     public static final double kMaxSpeedMetersPerSecond = 3;
     public static final double kMaxAccelerationMetersPerSecondSquared = 3;
