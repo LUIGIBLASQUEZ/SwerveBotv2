@@ -25,7 +25,6 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.subsystems.Intake;
 import java.util.List;
 
 /*
@@ -38,7 +37,6 @@ public class RobotContainer {
   // The robot's subsystems
   private final DriveTrain m_robotDrive = new DriveTrain();
   private final Chuck m_output = new Chuck();
-  private final Intake m_intake = new Intake();
 
   // The driver's controller
   //XboxController m_joystick = new XboxController(OIConstants.kDriverControllerPort);
@@ -102,10 +100,6 @@ public class RobotContainer {
             () -> m_output.AmpShoot(),
             m_output));
     
-    new JoystickButton(m_operator, 1)
-        .whileTrue(new RunCommand(
-            () -> m_intake.RingPick(),
-            m_intake));
   }
 
   /**
