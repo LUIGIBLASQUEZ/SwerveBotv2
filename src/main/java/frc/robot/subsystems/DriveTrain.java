@@ -253,7 +253,6 @@ public class DriveTrain extends SubsystemBase {
     return Math.IEEEremainder(-m_navx.getAngle(), 360.0);
   }
 
-  // TODO: check if this works?
   /* Returns turn rate of the Robot
    * Uses gyro to determine rate
    * 
