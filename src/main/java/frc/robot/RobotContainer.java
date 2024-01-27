@@ -101,14 +101,12 @@ public class RobotContainer {
     new JoystickButton(m_operator, 1)
         .onTrue(m_output.SpeakerShoot())
         .onFalse(m_output.stopRun());
-            
 
             // This button for the OPERATOR will shoot the amp motor    
     new JoystickButton(m_operator, 5)
-        .whileTrue(new RunCommand(
-            () -> m_output.AmpShoot(),
-            m_output));
-    
+        .onTrue(m_output.AmpShoot())
+        .onFalse(m_output.stopRun());
+  
   }
 
   /**
