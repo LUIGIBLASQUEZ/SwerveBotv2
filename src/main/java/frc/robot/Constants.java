@@ -121,8 +121,8 @@ public final class Constants {
     public static final int id10 = 10;
     public static final int id11 = 11;
     public static final int id12 = 12;
-    public static final int speakerspeed = 3;
-    public static final int ampspeed = 1;
+    public static final double speakerspeed = 3.0;
+    public static final double ampspeed = 1.0;
   }
 
   public static final class IntakeConstants {
