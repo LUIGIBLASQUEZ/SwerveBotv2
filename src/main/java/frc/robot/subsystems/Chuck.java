@@ -38,7 +38,8 @@ public class Chuck extends SubsystemBase{
     public CommandBase IntakeRing() {
         return run(
             () -> {
-                motor11.set(ChuckConstants.intakespeed);
+                motor10.set(-ChuckConstants.intakespeed*0.25);
+                motor11.set(-ChuckConstants.intakespeed);
             });
     }
 
