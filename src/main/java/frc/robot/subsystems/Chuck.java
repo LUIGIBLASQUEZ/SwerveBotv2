@@ -49,4 +49,13 @@ public class Chuck extends SubsystemBase{
                 motor12.set(ChuckConstants.ampspeed);
             });
     }
+
+    public CommandBase stopRun() {
+        return run(
+            () -> {
+                motor10.set(0);
+                motor11.set(0);
+                motor12.set(0);
+            });
+        }
 }

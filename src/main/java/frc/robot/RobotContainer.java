@@ -98,10 +98,9 @@ public class RobotContainer {
           m_climber));
             
             // This button for the OPERATOR will shoot the speaker motor
-    new JoystickButton(m_operator, 6)
-        .whileTrue(new RunCommand(
-            () -> m_output.SpeakerShoot(),
-            m_output));
+    new JoystickButton(m_operator, 1)
+        .onTrue(m_output.SpeakerShoot())
+        .onFalse(m_output.stopRun());
             
 
             // This button for the OPERATOR will shoot the amp motor    
