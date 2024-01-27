@@ -96,6 +96,11 @@ public class RobotContainer {
         .whileTrue(new RunCommand(
           () -> m_climber.AccuateUp(),
           m_climber));
+
+            // This button for the OPERATOR will intake the speaker motor
+    new JoystickButton(m_operator,2)
+        .onTrue(m_output.IntakeRing())
+        .onFalse(m_output.stopRun());
             
             // This button for the OPERATOR will shoot the speaker motor
     new JoystickButton(m_operator, 1)
