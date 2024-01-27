@@ -63,6 +63,7 @@ public class RobotContainer {
                 -MathUtil.applyDeadband(m_joystick2.getZ()*3.5, OIConstants.kDriveDeadband),
                 true, true),
             m_robotDrive));
+
   }
 
   /**
@@ -88,11 +89,13 @@ public class RobotContainer {
             () -> m_robotDrive.zeroHeading(),
             m_robotDrive));
 
+            
             // This button for the OPERATOR will shoot the speaker motor
     new JoystickButton(m_operator, 6)
         .whileTrue(new RunCommand(
             () -> m_output.SpeakerShoot(),
             m_output));
+            
 
             // This button for the OPERATOR will shoot the amp motor    
     new JoystickButton(m_operator, 5)
