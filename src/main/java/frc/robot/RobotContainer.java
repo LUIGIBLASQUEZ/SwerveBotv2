@@ -21,11 +21,11 @@ import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Chuck;
+import frc.robot.subsystems.Climber;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.subsystems.Intake;
 import java.util.List;
 
 /*
@@ -38,7 +38,7 @@ public class RobotContainer {
   // The robot's subsystems
   private final DriveTrain m_robotDrive = new DriveTrain();
   private final Chuck m_output = new Chuck();
-  private final Intake m_intake = new Intake();
+  private final Climber m_climber = new Climber();
 
   // The driver's controller
   //XboxController m_joystick = new XboxController(OIConstants.kDriverControllerPort);
@@ -60,11 +60,12 @@ public class RobotContainer {
 
         new RunCommand(
             () -> m_robotDrive.drive(
-                -MathUtil.applyDeadband(m_joystick1.getY()*1.5, OIConstants.kDriveDeadband),
-                -MathUtil.applyDeadband(m_joystick1.getX()*1.0, OIConstants.kDriveDeadband),
-                -MathUtil.applyDeadband(m_joystick2.getZ()*2, OIConstants.kDriveDeadband),
+                -MathUtil.applyDeadband(m_joystick1.getY()*4.0, OIConstants.kDriveDeadband),
+                -MathUtil.applyDeadband(m_joystick1.getX()*3.5, OIConstants.kDriveDeadband),
+                -MathUtil.applyDeadband(m_joystick2.getZ()*3.5, OIConstants.kDriveDeadband),
                 true, true),
             m_robotDrive));
+
   }
 
   /**
@@ -90,11 +91,18 @@ public class RobotContainer {
             () -> m_robotDrive.zeroHeading(),
             m_robotDrive));
 
+            // This TRIGGER for the DRIVER  will accuate the Climber UP
+    new JoystickButton(m_joystick1, 1)
+        .whileTrue(new RunCommand(
+          () -> m_climber.AccuateUp(),
+          m_climber));
+            
             // This button for the OPERATOR will shoot the speaker motor
     new JoystickButton(m_operator, 6)
         .whileTrue(new RunCommand(
             () -> m_output.SpeakerShoot(),
             m_output));
+            
 
             // This button for the OPERATOR will shoot the amp motor    
     new JoystickButton(m_operator, 5)
@@ -102,10 +110,6 @@ public class RobotContainer {
             () -> m_output.AmpShoot(),
             m_output));
     
-    new JoystickButton(m_operator, 1)
-        .whileTrue(new RunCommand(
-            () -> m_intake.RingPick(),
-            m_intake));
   }
 
   /**
