@@ -46,8 +46,8 @@ public class Chuck extends SubsystemBase{
     public CommandBase SpeakerShoot() {
         return run(
             () -> {
-                motor10.set(ChuckConstants.speakerspeed);
-                motor11.set(ChuckConstants.speakerspeed);
+                motor10.set(ChuckConstants.speakerspeed*15);
+                motor11.set(ChuckConstants.speakerspeed*15);
             });
     }
     

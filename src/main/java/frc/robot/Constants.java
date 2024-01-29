@@ -114,14 +114,14 @@ public final class Constants {
     public static final int kDriverControllerPort = 0;
     public static final int kDriverControllerPort2 = 1;
     public static final int kDriverControllerPort3 = 2;
-    public static final double kDriveDeadband = 0.05;
+    public static final double kDriveDeadband = 0.5;
   }
 
   public static final class ChuckConstants {
     public static final int id10 = 10;
     public static final int id11 = 11;
     public static final int id12 = 12;
-    public static final double speakerspeed = 5.5;
+    public static final double speakerspeed = 4.5;
     public static final double intakespeed = 0.5;
     public static final double ampspeed = 1.0;
   }
