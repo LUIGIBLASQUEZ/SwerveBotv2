@@ -52,6 +52,7 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+    m_robotDrive.zeroHeading();
 
     // Configure default commands
     m_robotDrive.setDefaultCommand(
