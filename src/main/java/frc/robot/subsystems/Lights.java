@@ -36,7 +36,7 @@ public class Lights extends SubsystemBase {
     m_led.start();
 
     for (int i = 0; i < m_ledBuffer.getLength(); i++) {
-        // Sets the specified LED to the RGB values for red
+        // Sets the specified LED to the RGB values for green
         m_ledBuffer.setRGB(i, 0, 255, 0);
      }
      
