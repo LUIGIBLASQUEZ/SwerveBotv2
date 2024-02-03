@@ -13,8 +13,8 @@ public class Climber extends SubsystemBase{
     // ID number 9 in REV
     private final PneumaticHub pHub = new PneumaticHub(9);
     // On Pneumatic Hub ports 0 and 1
-    private final DoubleSolenoid sole1 = pHub.makeDoubleSolenoid(1,8);
-    private final DoubleSolenoid sole2 = pHub.makeDoubleSolenoid(3,15);
+    private final DoubleSolenoid sole1 = pHub.makeDoubleSolenoid(3,1);
+    private final DoubleSolenoid sole2 = pHub.makeDoubleSolenoid(15,8);
 
     public void AccuateUp() {
         state = DoubleSolenoid.Value.kForward;
@@ -25,6 +25,7 @@ public class Climber extends SubsystemBase{
     public void AcctuateDown() {
         state = DoubleSolenoid.Value.kReverse;
         sole1.set(state);
+        
         sole2.set(state);
     }    
 }
