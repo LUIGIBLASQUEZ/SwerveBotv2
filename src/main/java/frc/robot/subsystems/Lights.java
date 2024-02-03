@@ -47,5 +47,6 @@ public class Lights extends SubsystemBase {
         for (int i = 0; i < m_ledBuffer.getLength(); i++) {
             m_ledBuffer.setHSV(i, 0, 100, 100);
         }
+        m_led.setData(m_ledBuffer);
     }
 }
