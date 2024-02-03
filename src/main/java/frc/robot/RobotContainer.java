@@ -100,7 +100,7 @@ public class RobotContainer {
             m_robotDrive));
 
             // This TRIGGER for the DRIVER  will accuate the Climber UP
-    new JoystickButton(m_joystick1, 1)
+    new JoystickButton(m_joystick2, 5)
         .toggleOnTrue(Commands.startEnd(
         () -> m_climber.AccuateUp(),
         () -> m_climber.AcctuateDown(),
