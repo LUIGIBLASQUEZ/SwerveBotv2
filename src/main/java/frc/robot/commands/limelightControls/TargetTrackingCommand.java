@@ -44,7 +44,7 @@ public class TargetTrackingCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return m_lime.m_LimelightSteerCommand == 0 ;
+    return m_lime.m_LimelightSteerCommand == 0;
   }
 }
 
