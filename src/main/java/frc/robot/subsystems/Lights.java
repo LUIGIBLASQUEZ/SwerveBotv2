@@ -42,4 +42,10 @@ public class Lights extends SubsystemBase {
      
      m_led.setData(m_ledBuffer);
     }
+
+    public void redHue() {
+        for (int i = 0; i < m_ledBuffer.getLength(); i++) {
+            m_ledBuffer.setHSV(i, 0, 100, 100);
+        }
+    }
 }
