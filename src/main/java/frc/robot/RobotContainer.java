@@ -28,6 +28,9 @@ import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import java.util.List;
 
+// To Test
+//import frc.robot.subsystems.Lights;
+
 /*
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -39,6 +42,9 @@ public class RobotContainer {
   private final DriveTrain m_robotDrive = new DriveTrain();
   private final Chuck m_output = new Chuck();
   private final Climber m_climber = new Climber();
+  
+  // test
+  //private final Lights m_lights = new Lights();
 
   // The driver's controller
   //XboxController m_joystick = new XboxController(OIConstants.kDriverControllerPort);
@@ -113,6 +119,14 @@ public class RobotContainer {
         .onTrue(m_output.AmpShoot())
         .onFalse(m_output.stopRun());
   
+
+        // TESTTTT
+/* 
+    new JoystickButton(m_operator, 3)
+        .whileTrue(new RunCommand(
+            () -> m_lights.Red(),
+            m_lights));
+            */
   }
 
   /**

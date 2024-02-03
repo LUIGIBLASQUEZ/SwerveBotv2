@@ -8,7 +8,7 @@ public class Lights extends SubsystemBase {
       // PWM port 9
     // Must be a PWM header, not MXP or DIO
     
-    AddressableLED m_led = new AddressableLED(22);
+    AddressableLED m_led = new AddressableLED(0);
 
     // Reuse buffer
     // Default to a length of 60, start empty output
