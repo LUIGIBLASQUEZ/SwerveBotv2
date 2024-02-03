@@ -23,6 +23,7 @@ import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Chuck;
 import frc.robot.subsystems.Climber;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -100,9 +101,10 @@ public class RobotContainer {
 
             // This TRIGGER for the DRIVER  will accuate the Climber UP
     new JoystickButton(m_joystick1, 1)
-        .whileTrue(new RunCommand(
-          () -> m_climber.AccuateUp(),
-          m_climber));
+        .toggleOnTrue(Commands.startEnd(
+        () -> m_climber.AccuateUp(),
+        () -> m_climber.AcctuateDown(),
+        m_climber));
 
             // This button for the OPERATOR will intake the speaker motor
     new JoystickButton(m_operator,2)
@@ -118,9 +120,7 @@ public class RobotContainer {
     new JoystickButton(m_operator, 5)
         .onTrue(m_output.AmpShoot())
         .onFalse(m_output.stopRun());
-  
 
-        // TESTTTT
 /* 
     new JoystickButton(m_operator, 3)
         .whileTrue(new RunCommand(
