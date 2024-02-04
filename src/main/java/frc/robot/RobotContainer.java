@@ -15,17 +15,22 @@ import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.PS4Controller.Button;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
+import frc.robot.commands.LimelightTrack;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Chuck;
 import frc.robot.subsystems.Climber;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import java.util.List;
 
@@ -43,6 +48,7 @@ public class RobotContainer {
   private final DriveTrain m_robotDrive = new DriveTrain();
   private final Chuck m_output = new Chuck();
   private final Climber m_climber = new Climber();
+  private final Limelight m_lime = new Limelight();
   
   // test
   //private final Lights m_lights = new Lights();
@@ -52,6 +58,9 @@ public class RobotContainer {
   Joystick m_joystick1 = new Joystick(OIConstants.kDriverControllerPort);
   Joystick m_joystick2 = new Joystick(OIConstants.kDriverControllerPort2);
   XboxController m_operator = new XboxController(OIConstants.kDriverControllerPort3);
+
+  // Initialized Sendable Chooser
+  SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -74,6 +83,10 @@ public class RobotContainer {
                 true, true),
             m_robotDrive));
 
+    // Autonomous Chooser additions
+    m_chooser.setDefaultOption("Do Nothing", new WaitCommand(15));
+    m_chooser.addOption("Limelight Tracker", new LimelightTrack(m_lime, m_robotDrive));
+    SmartDashboard.putData(m_chooser);
   }
 
   /**
@@ -121,12 +134,6 @@ public class RobotContainer {
         .onTrue(m_output.AmpShoot())
         .onFalse(m_output.stopRun());
 
-/* 
-    new JoystickButton(m_operator, 3)
-        .whileTrue(new RunCommand(
-            () -> m_lights.Red(),
-            m_lights));
-            */
   }
 
   /**
@@ -136,8 +143,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // Create config for trajectory
-    TrajectoryConfig config = new TrajectoryConfig(
-        AutoConstants.kMaxSpeedMetersPerSecond,
+    TrajectoryConfig config = new TrajectoryConfig(AutoConstants.kMaxSpeedMetersPerSecond,
         AutoConstants.kMaxAccelerationMetersPerSecondSquared)
         // Add kinematics to ensure max speed is actually obeyed
         .setKinematics(DriveConstants.kDriveKinematics);

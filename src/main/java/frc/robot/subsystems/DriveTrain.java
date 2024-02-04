@@ -37,13 +37,13 @@ public class DriveTrain extends SubsystemBase {
       DriveConstants.kFrontRightChassisAngularOffset);
 
   private final MAXSwerveModule m_rearLeft = new MAXSwerveModule(
-      DriveConstants.kRearLeftDrivingCanId,
-      DriveConstants.kRearLeftTurningCanId,
+      DriveConstants.kBackLeftDrivingCanId,
+      DriveConstants.kBackLeftTurningCanId,
       DriveConstants.kBackLeftChassisAngularOffset);
 
   private final MAXSwerveModule m_rearRight = new MAXSwerveModule(
-      DriveConstants.kRearRightDrivingCanId,
-      DriveConstants.kRearRightTurningCanId,
+      DriveConstants.kBackRightDrivingCanId,
+      DriveConstants.kBackRightTurningCanId,
       DriveConstants.kBackRightChassisAngularOffset);
 
   /* Gyro sensor, mainly used for field relativity
