@@ -6,6 +6,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import frc.robot.Constants.ChuckConstants;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 
 // used for "output" in order to throw note into goal
