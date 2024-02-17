@@ -68,13 +68,13 @@ public class Chuck extends SubsystemBase{
     public CommandBase AmpIntake() {
         return run(
             () -> {
-                motor12.set(-1);
+                motor12.set(-5);
             });
     }
     public CommandBase AmpShoot() {
         return run(
             () -> {
-                motor12.set(ChuckConstants.ampspeed);
+                motor12.set(30);
             });
     }
 

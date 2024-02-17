@@ -112,12 +112,12 @@ public class RobotContainer {
         .onFalse(m_output.stopRun());
 
             // amp output
-    new JoystickButton(m_operator,1)
+    new JoystickButton(m_operator,3)
         .onTrue(m_output.AmpShoot())
         .onFalse(m_output.stopRunAmp());
 
             // amp intake
-    new JoystickButton(m_operator,3)
+    new JoystickButton(m_operator,1)
         .onTrue(m_output.AmpIntake())
         .onFalse(m_output.stopRunAmp());
             
@@ -130,6 +130,10 @@ public class RobotContainer {
     new JoystickButton(m_operator, 4)
         .onTrue(m_output.SpeakerShoot())
         .onFalse(m_output.stopRunUpper());
+        //.toggleOnTrue(Commands.startEnd(
+        //() -> m_climber.AccuateUp(),
+        //() -> m_climber.AcctuateDown(),
+        //m_climber));
 
             // This button for the OPERATOR will shoot the amp motor    
     new JoystickButton(m_operator, 5)
