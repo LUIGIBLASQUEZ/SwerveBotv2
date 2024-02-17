@@ -69,8 +69,7 @@ public class Chuck extends SubsystemBase{
         return run(
             () -> {
                 motor12.set(-1);
-            }
-        )
+            });
     }
     public CommandBase AmpShoot() {
         return run(
