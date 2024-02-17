@@ -6,7 +6,11 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import frc.robot.Constants.ChuckConstants;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
+//import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 
 // used for "output" in order to throw note into goal
@@ -18,8 +22,8 @@ public class Chuck extends SubsystemBase{
     // Motors
 
     // Speaker motors
-    private final CANSparkMax motor10 = new CANSparkMax(ChuckConstants.id10, MotorType.kBrushless);
-    private final CANSparkMax motor11 = new CANSparkMax(ChuckConstants.id11, MotorType.kBrushless);
+    private final TalonFX motor10 = new TalonFX(ChuckConstants.id10);
+    private final TalonFX motor11 = new TalonFX(ChuckConstants.id11);
     // Amp motor
     private final CANSparkMax motor12 = new CANSparkMax(ChuckConstants.id12, MotorType.kBrushless);
 
@@ -27,8 +31,8 @@ public class Chuck extends SubsystemBase{
     public Chuck() {
 
         // By default, motors will be stopped
-        motor10.setIdleMode(IdleMode.kBrake);
-        motor11.setIdleMode(IdleMode.kBrake);
+        motor10.setNeutralMode(NeutralMode.Brake);
+        motor11.setNeutralMode(NeutralMode.Brake);
         motor12.setIdleMode(IdleMode.kBrake);
     }
 
@@ -39,19 +43,35 @@ public class Chuck extends SubsystemBase{
     public CommandBase IntakeRing() {
         return run(
             () -> {
-                motor10.set(-ChuckConstants.intakespeed*0.5);
-                motor11.set(-ChuckConstants.intakespeed*2);
+                motor10.set(TalonFXControlMode.PercentOutput, ChuckConstants.intakespeed);
+                motor11.set(TalonFXControlMode.PercentOutput, ChuckConstants.intakespeed);
             });
     }
+
+//hi
 
     public CommandBase SpeakerShoot() {
         return run(
             () -> {
-                motor10.set(ChuckConstants.speakerspeed*15);
-                motor11.set(ChuckConstants.speakerspeed*15);
+                motor10.set(TalonFXControlMode.PercentOutput, ChuckConstants.speakerspeed);
+                //motor11.set(TalonFXControlMode.PercentOutput, ChuckConstants.speakerspeed);
+            });
+    }
+
+    public CommandBase SpeakerShoot2() {
+        return run(
+            () -> {
+                motor11.set(TalonFXControlMode.PercentOutput, ChuckConstants.speakerspeed);
             });
     }
     
+    public CommandBase AmpIntake() {
+        return run(
+            () -> {
+                motor12.set(-1);
+            }
+        )
+    }
     public CommandBase AmpShoot() {
         return run(
             () -> {
@@ -62,9 +82,31 @@ public class Chuck extends SubsystemBase{
     public CommandBase stopRun() {
         return run(
             () -> {
-                motor10.set(0);
-                motor11.set(0);
+                motor10.set(TalonFXControlMode.PercentOutput, 0.0);
+                motor11.set(TalonFXControlMode.PercentOutput, 0.0);
                 motor12.set(0);
             });
         }
+
+    public CommandBase stopRunLower() {
+        return run(
+            () -> {
+                motor11.set(TalonFXControlMode.PercentOutput, 0.0);
+            });
+        }
+
+    public CommandBase stopRunUpper() {
+        return run(
+            () -> {
+                motor10.set(TalonFXControlMode.PercentOutput, 0.0);
+            });
+    }
+
+    public CommandBase stopRunAmp() {
+        return run(
+            () -> {
+                motor12.set(0.0);
+            });
+    }
+
 }

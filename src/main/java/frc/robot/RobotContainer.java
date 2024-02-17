@@ -70,7 +70,7 @@ public class RobotContainer {
             () -> m_robotDrive.drive(
                 -MathUtil.applyDeadband(m_joystick1.getY()*6.0, OIConstants.kDriveDeadband),
                 -MathUtil.applyDeadband(m_joystick1.getX()*5.5, OIConstants.kDriveDeadband),
-                -MathUtil.applyDeadband(m_joystick2.getZ()*4.0, OIConstants.kDriveDeadband),
+                -MathUtil.applyDeadband(m_joystick2.getZ()*6.0, OIConstants.kDriveDeadband),
                 true, true),
             m_robotDrive));
 
@@ -110,16 +110,37 @@ public class RobotContainer {
     new JoystickButton(m_operator,2)
         .onTrue(m_output.IntakeRing())
         .onFalse(m_output.stopRun());
+
+            // amp output
+    new JoystickButton(m_operator,1)
+        .onTrue(m_output.AmpShoot())
+        .onFalse(m_output.stopRunAmp());
+
+            // amp intake
+    new JoystickButton(m_operator,3)
+        .onTrue(m_output.AmpIntake())
+        .onFalse(m_output.stopRunAmp());
             
-            // This button for the OPERATOR will shoot the speaker motor
-    new JoystickButton(m_operator, 1)
+            // Fire motor
+    new JoystickButton(m_operator, 6)
+        .onTrue(m_output.SpeakerShoot2())
+        .onFalse(m_output.stopRunLower());
+        
+            // Prep motor
+    new JoystickButton(m_operator, 4)
         .onTrue(m_output.SpeakerShoot())
-        .onFalse(m_output.stopRun());
+        .onFalse(m_output.stopRunUpper());
 
             // This button for the OPERATOR will shoot the amp motor    
     new JoystickButton(m_operator, 5)
         .onTrue(m_output.AmpShoot())
         .onFalse(m_output.stopRun());
+
+    new JoystickButton(m_operator, 12)
+        .toggleOnTrue(Commands.startEnd(
+        () -> m_climber.AccuateUp(),
+        () -> m_climber.AcctuateDown(),
+        m_climber));
 
 /* 
     new JoystickButton(m_operator, 3)
