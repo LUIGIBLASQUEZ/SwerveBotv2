@@ -250,7 +250,7 @@ public class DriveTrain extends SubsystemBase {
    * 
    */
   public double getHeading() {
-    return Math.IEEEremainder(m_navx.getAngle(), 360.0);
+    return Math.IEEEremainder(-m_navx.getAngle(), 360.0);
   }
 
   /* Returns turn rate of the Robot
