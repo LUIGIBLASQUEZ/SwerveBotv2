@@ -15,14 +15,24 @@ public class DriveToTarget  extends CommandBase {
         m_drive = drive;
     }
 
+    public void initialize() {
+        m_drive.getHeading();
+    }
+
     // While scheduler runs, this will run
     public void execute() {
+        if (m_lime.hasValidTarget() == true)
+            {
                 m_drive.drive(
                 DriveConstants.kMaxSpeedMetersPerSecond, 
                 DriveConstants.kMaxSpeedMetersPerSecond, 
                 m_lime.m_LimelightSteerCommand, 
                 true, 
                 true);
+            }
+            else {
+                m_drive.setX();
+            }
     }
 
     // If command is interrupted, stops the robot
