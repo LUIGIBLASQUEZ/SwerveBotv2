@@ -108,6 +108,19 @@ public class Limelight extends SubsystemBase {
     public static final double MAX_SKEW = 0;
     private static NetworkTableEntry targetSkewEntry = table.getEntry("ts");
 
+    // Id array
+    //NetworkTableInstance.getDefault().getTable(“limelight”).getEntry(“tid”).getDouble(<default value>);
+    private static NetworkTableEntry targetid = table.getEntry("tid");
+
+    public boolean earmarkIds() {
+        if (getId() == 1) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     // Methods to get angle offsets (x,y), range value, and skew
     // Horiz.
     public static double getTargetXAngle() {
@@ -126,6 +139,11 @@ public class Limelight extends SubsystemBase {
     // Skew
     public static double getTargetSkew() {
         return targetSkewEntry.getDouble(0);
+    }
+
+    // Id
+    public static double getId() {
+        return targetid.getInteger(0);
     }
 
     /*
