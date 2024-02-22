@@ -4,13 +4,10 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Limelight;
-import edu.wpi.first.apriltag.AprilTagDetection;
-import edu.wpi.first.apriltag.AprilTagDetector;
 
 public class TrackIds extends CommandBase {
     private final Limelight m_lime;
     private final DriveTrain m_drive;
-    private final AprilTagDetector m_detector = new AprilTagDetector();
 
     // Initialize Drive Command
     public TrackIds(Limelight lime, DriveTrain drive) {
@@ -36,10 +33,6 @@ public class TrackIds extends CommandBase {
             else {
                 m_drive.setX();
             }
-    }
-
-    public void detectIds() {
-        
     }
 
     // If command is interrupted, stops the robot

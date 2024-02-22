@@ -77,7 +77,7 @@ public class Limelight extends SubsystemBase {
 
     // Boolean statement determining if the Limelight has a valid target
     // Is this boilerplate? It might be
-    public static boolean hasValidTarget() {
+    public boolean hasValidTarget() {
         return hasAnyTarget();
     }
 
@@ -111,15 +111,6 @@ public class Limelight extends SubsystemBase {
     // Id array
     //NetworkTableInstance.getDefault().getTable(“limelight”).getEntry(“tid”).getDouble(<default value>);
     private static NetworkTableEntry targetid = table.getEntry("tid");
-
-    public boolean earmarkIds() {
-        if (getId() == 1) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
 
     // Methods to get angle offsets (x,y), range value, and skew
     // Horiz.
@@ -162,5 +153,15 @@ public class Limelight extends SubsystemBase {
             m_LimelightHasValidTarget = true;
             m_LimelightSteerCommand = 0.0;
           }
+    }
+
+    // additional id tracker
+    public boolean earmarkIds() {
+        if (getId() == 1) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }
