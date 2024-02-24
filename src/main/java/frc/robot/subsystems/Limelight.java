@@ -10,6 +10,9 @@ public class Limelight extends SubsystemBase {
     private NetworkTable tableInstance = NetworkTableInstance.getDefault()
     .getTable("limelight");
 
+    // Limelight target boolean
+    public boolean vTar = false;
+
     // Send the data to SmartDashboard
     public static final boolean postSmartDashboard = true;
 
@@ -46,15 +49,16 @@ public class Limelight extends SubsystemBase {
     // Check for valid target (disregard is the range/area where target should be ignored)
     // TODO: verify this works???
 
-    public boolean validTarget(double disregard) {
-        disregard = 0.01;
+    // TODO: EDIT LIMELIGHT HARDWARD CONTOURS, SPECIFICALLY THE SORT MODE AND SPECKLES
+
+    public void validTarget(double disregard) {
         if (tableInstance.getEntry("ta").getDouble(0.0) > disregard)
         {
-            return true;
+            vTar = true;
         }
         else
         {
-            return false;
+            vTar = false;
         }
     }
 }

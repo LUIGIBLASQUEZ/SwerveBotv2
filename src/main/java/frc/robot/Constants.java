@@ -132,6 +132,18 @@ public final class Constants {
   }
   public static final class LimelightConstants {
     public static final int LimelightPDHPort = 21;
+
+    public static final double kPx = 0.1;
+    public static final double kIx = 0.0;
+    public static final double kDx = 0.0;
+
+    public static final double kPy = 0.1;
+    public static final double kIy = 0.0;
+    public static final double kDy = 0.0;
+
+    public static final double kProt = 0.1;
+    public static final double kIrot = 0.0;
+    public static final double kDrot = 0.0;
   }
 
   public static final class AutoConstants {
