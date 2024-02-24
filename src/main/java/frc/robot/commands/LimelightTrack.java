@@ -3,8 +3,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.LimelightConstants;
+import edu.wpi.first.math.kinematics.ChassisSpeeds;
+import edu.wpi.first.math.kinematics.SwerveModuleState;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Limelight;
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
 
 public class LimelightTrack extends CommandBase {
@@ -51,10 +54,28 @@ public class LimelightTrack extends CommandBase {
 
       if (m_lime.vTar = true)
       {
-        xSpeed = xpid.calculate(m_lime.PosX(), driveOffset);
-        ySpeed = ypid.calculate(m_lime.PoxY(), strafeOffset);
-        rot = rotpid.calculate(m_lime.getYaw(), rotationOffset); 
+        xSpeed = xpid.calculate(m_lime.PosX());
+        ySpeed = ypid.calculate(m_lime.PosY());
+        rot = rotpid.calculate(m_lime.PosSkew()); 
       }
+      else
+      {
+        xSpeed = 0;
+        ySpeed = 0;
+        rot = 0;
+      }
+
+      // Like drive command in RobotContainer
+      xSpeed = -MathUtil.applyDeadband(0.5, 0.0);
+      ySpeed = -MathUtil.applyDeadband(0.5, 0.0);
+      rot = -MathUtil.applyDeadband(0.5, 0.0);
+
+      // Make new ChassisSpeeds object to work with module states
+      ChassisSpeeds speeds;
+      speeds = new ChassisSpeeds(xSpeed, ySpeed, rot);
+
+      SwerveModuleState[] moduleStates = DriveConstants.kDriveKinematics.toSwerveModuleStates(speeds);
+      m_drive.setModuleStates(moduleStates);
     }
 
     // If command ends or is interrupted, calls the method

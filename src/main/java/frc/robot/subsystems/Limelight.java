@@ -38,6 +38,10 @@ public class Limelight extends SubsystemBase {
         return tableInstance.getEntry("ta").getDouble(0.0);
     }
 
+    public double PosSkew() {
+        return tableInstance.getEntry("ts").getDouble(0.0);
+    }
+
     public double PosHor() {
         return tableInstance.getEntry("thor").getDouble(0.0);
     }
