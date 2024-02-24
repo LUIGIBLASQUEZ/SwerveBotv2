@@ -62,7 +62,7 @@ public class LimelightTrack extends CommandBase {
       {
         xSpeed = 0;
         ySpeed = 0;
-        rot = 0;
+        rot = -0.2;
       }
 
       // Like drive command in RobotContainer
