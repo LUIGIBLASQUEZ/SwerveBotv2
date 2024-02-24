@@ -3,6 +3,10 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.networktables.GenericEntry;
 
 public class Limelight extends SubsystemBase {
 
@@ -15,6 +19,20 @@ public class Limelight extends SubsystemBase {
 
     // Send the data to SmartDashboard
     public static final boolean postSmartDashboard = true;
+
+    // Send data to Shuffleboard (test)
+    /*
+    private static final ShuffleboardTab tab = Shuffleboard.getTab("SmartDashboard");
+
+    GenericEntry validtarget = tab.add("Valid Target", false).getEntry();  
+    public void calculate() {
+    validtarget.setBoolean(vTar);
+    }
+
+    GenericEntry tx = Shuffleboard.getTab("SmartDashboard")
+    .add("tx", 0)
+    .withWidget(BuiltInWidgets.kNet
+    */
 
     // Verify connection to SmartDashboard
     public static boolean isConnected(boolean connected) {

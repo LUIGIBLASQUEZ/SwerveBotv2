@@ -10,12 +10,16 @@ import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.networktables.GenericEntry;
 import frc.robot.SwerveUtils;
 // Position imports
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 // Constants
 import frc.robot.Constants.DriveConstants;
 
@@ -260,4 +264,15 @@ public class DriveTrain extends SubsystemBase {
   public double getTurnRate() {
     return m_navx.getYaw() * (DriveConstants.kGyroReversed ? -1.0 : 1.0);
   }
+
+  // Send data to Shuffleboard (test)
+  private static final ShuffleboardTab tab = Shuffleboard.getTab("SmartDashboard");
+
+  /* 
+  GenericEntry xSpeed = Shuffleboard.getTab("SmartDashboard")
+  .add("xSpeed", 0)
+  .withWidget(BuiltInWidgets.kGyro)
+  .with
+  .getEntry();
+  */
 }
