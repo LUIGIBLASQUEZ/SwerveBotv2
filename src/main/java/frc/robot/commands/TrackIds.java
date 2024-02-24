@@ -16,11 +16,13 @@ public class TrackIds extends CommandBase {
     }
 
     public void initialize() {
-        m_drive.getHeading();
+        m_drive.zeroHeading();
     }
 
     // While scheduler runs, this will run
     public void execute() {
+        m_drive.zeroHeading();
+        m_lime.updateLimelight(DriveConstants.kMaxAngularSpeed);
         if (m_lime.earmarkIds() == true)
             {
                 m_drive.drive(
@@ -42,7 +44,7 @@ public class TrackIds extends CommandBase {
 
     // Returns at the end of the scheduled command
     public boolean isFinished() {
-        return m_lime.m_LimelightTargetArea == 50;
+        return m_lime.m_LimelightHasValidTarget == false;
     }
 }
 

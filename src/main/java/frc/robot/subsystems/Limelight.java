@@ -151,6 +151,11 @@ public class Limelight extends SubsystemBase {
           if (hasValidTarget() == true)
           {
             m_LimelightHasValidTarget = true;
+            double steer_cmd = X_ANGLE_SHIFT* -limeRot;
+            m_LimelightSteerCommand = steer_cmd;
+          }
+          else {
+            m_LimelightHasValidTarget = false;
             m_LimelightSteerCommand = 0.0;
           }
     }

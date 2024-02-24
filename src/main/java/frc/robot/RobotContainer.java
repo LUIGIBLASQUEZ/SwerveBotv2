@@ -23,8 +23,6 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
-/* KINEMATIC IMPORTS
- * 
 import java.util.List;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import frc.robot.Constants.AutoConstants;
@@ -37,7 +35,6 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
-*/
 
 // To Test
 //import frc.robot.subsystems.Lights;
@@ -143,17 +140,16 @@ public class RobotContainer {
   }
 
   /**
-   * Use this to pass the autonomous command to the main {@link Robot} class.
+   * Use this to pass the autonomous command 
+   * to the main {@link Robot} class.
    *
    * @return the command to run in autonomous
    */
+  public Command autocheck2() {
+    return m_chooser.getSelected();
+  }
   public Command getAutonomousCommand() {
 
-    return m_chooser.getSelected();
-
-
-    /* OLD KINEMATIC CONFIG
-     *
     // Create config for trajectory
     TrajectoryConfig config = new TrajectoryConfig(AutoConstants.kMaxSpeedMetersPerSecond,
         AutoConstants.kMaxAccelerationMetersPerSecondSquared)
@@ -190,7 +186,7 @@ public class RobotContainer {
     m_robotDrive.resetOdometry(exampleTrajectory.getInitialPose());
 
     // Run path following command, then stop at the end.
-    return swerveControllerCommand.andThen(() -> m_robotDrive.drive(0, 0, 0, false, false));
-    */
+    return swerveControllerCommand.andThen(() -> m_robotDrive.drive(0, 0, 0, false, false))
+    .andThen(() -> m_chooser.getSelected());
   }
 }
