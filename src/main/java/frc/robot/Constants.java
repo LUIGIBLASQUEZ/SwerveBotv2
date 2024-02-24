@@ -22,8 +22,9 @@ public final class Constants {
 
     // Slew rates
     public static final double kDirectionSlewRate = 1.2; // radians per second
-    public static final double kMagnitudeSlewRate = 1.8; // percent per second (1 = 100%)
-    public static final double kRotationalSlewRate = 2.0; // percent per second (1 = 100%)
+    public static final double kMagnitudeSlewRate = .7; // percent per second (1 = 100%)
+    public static final double kRotationalSlewRate = .8; // percent per second (1 = 100%)
+    // previously 1.8 and 2.0
 
     // Swerve drivetrain physical distances
     public static final double kTrackWidth = Units.inchesToMeters(21.5);
