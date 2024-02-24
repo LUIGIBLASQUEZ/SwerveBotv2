@@ -23,6 +23,9 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
+import edu.wpi.first.wpilibj.DriverStation;
+// TODO: DriverStation class holds values such as alliance color, could be used to auto switch between either sides April Tag IDs
+
 import java.util.List;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import frc.robot.Constants.AutoConstants;
@@ -71,6 +74,9 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
     m_robotDrive.zeroHeading();
+
+    // Theoretically silences log warnings about controllers
+    DriverStation.silenceJoystickConnectionWarning(true);
 
     // Configure default commands
     m_robotDrive.setDefaultCommand(
