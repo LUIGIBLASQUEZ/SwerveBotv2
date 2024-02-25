@@ -15,13 +15,13 @@ import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.PS4Controller.Button;
-import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.commands.testcmd;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Chuck;
 import frc.robot.subsystems.Climber;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -50,6 +50,7 @@ public class RobotContainer {
   private final DriveTrain m_robotDrive = new DriveTrain();
   private final Chuck m_output = new Chuck();
   private final Climber m_climber = new Climber();
+  private final  Limelight m_lime = new Limelight();
   
   // test
   //private final Lights m_lights = new Lights();
