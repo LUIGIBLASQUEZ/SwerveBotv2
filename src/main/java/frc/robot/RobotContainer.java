@@ -73,7 +73,9 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-    m_robotDrive.zeroHeading();
+
+    // Ignore controller warnings
+    DriverStation.silenceJoystickConnectionWarning(true);
 
     // Shuffleboard config
     Shuffleboard.getTab("SmartDashboard")
