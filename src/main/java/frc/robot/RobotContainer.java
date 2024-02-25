@@ -15,10 +15,12 @@ import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.PS4Controller.Button;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
+import frc.robot.commands.testcmd;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Chuck;
 import frc.robot.subsystems.Climber;
@@ -26,9 +28,11 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import java.util.List;
 
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -56,6 +60,12 @@ public class RobotContainer {
   Joystick m_joystick2 = new Joystick(OIConstants.kDriverControllerPort2);
   XboxController m_operator = new XboxController(OIConstants.kDriverControllerPort3);
 
+  // Initialize Sendable Chooser
+  SendableChooser<Command> m_chooser = new SendableChooser<>();
+
+  // Initialize Shuffleboard
+  ShuffleboardTab smartdash = Shuffleboard.getTab("SmartDashboard");
+
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
@@ -63,6 +73,20 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
     m_robotDrive.zeroHeading();
+
+    // Shuffleboard config
+    Shuffleboard.getTab("SmartDashboard")
+    .add(m_chooser)
+    .withWidget(BuiltInWidgets.kComboBoxChooser);
+
+    Shuffleboard.getTab("SmartDashboard")
+    .add("Limelight Feed", m_lime)
+    .withWidget(BuiltInWidgets.kCameraStream);
+    /*
+    Shuffleboard.getTab("SmartDashboard")
+    .add("Gyro", m_navx)
+    .withWidget(BuiltInWidgets.kGyro);
+    */
 
     // Configure default commands
     m_robotDrive.setDefaultCommand(
@@ -76,6 +100,9 @@ public class RobotContainer {
                 -MathUtil.applyDeadband(m_joystick2.getZ()*6.0, OIConstants.kDriveDeadband),
                 true, true),
             m_robotDrive));
+
+    m_chooser.setDefaultOption("Wait", new WaitCommand(15));
+    m_chooser.addOption("Test", (Command) new testcmd());
   }
 
   /**
