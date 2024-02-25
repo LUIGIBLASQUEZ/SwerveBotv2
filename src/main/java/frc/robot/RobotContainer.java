@@ -19,7 +19,6 @@ import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
-import frc.robot.commands.testcmd;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Chuck;
@@ -30,6 +29,7 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj.DriverStation;
 import java.util.List;
 
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
@@ -83,6 +83,7 @@ public class RobotContainer {
     Shuffleboard.getTab("SmartDashboard")
     .add("Limelight Feed", m_lime)
     .withWidget(BuiltInWidgets.kCameraStream);
+    
     /*
     Shuffleboard.getTab("SmartDashboard")
     .add("Gyro", m_navx)
@@ -103,7 +104,7 @@ public class RobotContainer {
             m_robotDrive));
 
     m_chooser.setDefaultOption("Wait", new WaitCommand(15));
-    m_chooser.addOption("Test", (Command) new testcmd());
+    //m_chooser.addOption("Test", (Command) new testcmd());
   }
 
   /**
