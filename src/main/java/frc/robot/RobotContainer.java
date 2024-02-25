@@ -20,7 +20,7 @@ import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.Limelight;
+//import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Chuck;
 import frc.robot.subsystems.Climber;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -32,9 +32,6 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.DriverStation;
 import java.util.List;
 
-import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 // To Test
 //import frc.robot.subsystems.Lights;
@@ -50,7 +47,7 @@ public class RobotContainer {
   private final DriveTrain m_robotDrive = new DriveTrain();
   private final Chuck m_output = new Chuck();
   private final Climber m_climber = new Climber();
-  private final  Limelight m_lime = new Limelight();
+  //private final  Limelight m_lime = new Limelight();
   
   // test
   //private final Lights m_lights = new Lights();
@@ -64,9 +61,6 @@ public class RobotContainer {
   // Initialize Sendable Chooser
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
-  // Initialize Shuffleboard
-  ShuffleboardTab smartdash = Shuffleboard.getTab("SmartDashboard");
-
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
@@ -76,21 +70,6 @@ public class RobotContainer {
 
     // Ignore controller warnings
     DriverStation.silenceJoystickConnectionWarning(true);
-
-    // Shuffleboard config
-    Shuffleboard.getTab("SmartDashboard")
-    .add(m_chooser)
-    .withWidget(BuiltInWidgets.kComboBoxChooser);
-
-    Shuffleboard.getTab("SmartDashboard")
-    .add("Limelight Feed", m_lime)
-    .withWidget(BuiltInWidgets.kCameraStream);
-    
-    /*
-    Shuffleboard.getTab("SmartDashboard")
-    .add("Gyro", m_navx)
-    .withWidget(BuiltInWidgets.kGyro);
-    */
 
     // Configure default commands
     m_robotDrive.setDefaultCommand(
@@ -178,13 +157,6 @@ public class RobotContainer {
         () -> m_climber.AccuateUp(),
         () -> m_climber.AcctuateDown(),
         m_climber));
-
-/* 
-    new JoystickButton(m_operator, 3)
-        .whileTrue(new RunCommand(
-            () -> m_lights.Red(),
-            m_lights));
-            */
   }
 
   /**
