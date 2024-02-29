@@ -1,12 +1,9 @@
 package frc.robot.subsystems;
 import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
-import edu.wpi.first.networktables.GenericEntry;
 
 public class Limelight extends SubsystemBase {
 
@@ -19,20 +16,6 @@ public class Limelight extends SubsystemBase {
 
     // Send the data to SmartDashboard
     public static final boolean postSmartDashboard = true;
-
-    // Send data to Shuffleboard (test)
-    /*
-    private static final ShuffleboardTab tab = Shuffleboard.getTab("SmartDashboard");
-
-    GenericEntry validtarget = tab.add("Valid Target", false).getEntry();  
-    public void calculate() {
-    validtarget.setBoolean(vTar);
-    }
-
-    GenericEntry tx = Shuffleboard.getTab("SmartDashboard")
-    .add("tx", 0)
-    .withWidget(BuiltInWidgets.kNet
-    */
 
     // Verify connection to SmartDashboard
     public static boolean isConnected(boolean connected) {
@@ -66,6 +49,36 @@ public class Limelight extends SubsystemBase {
 
     public double PosVert() {
         return tableInstance.getEntry("tvert").getDouble(0.0);
+    }
+
+    public enum LEDMode {
+        // follow pipeline mode
+        PIPELINE(0),
+        // force LEDs off
+        FORCE_OFF(1),
+        // force LEDs to blink
+        FORCE_BLINK(2),
+        // force LEDs on
+        FORCE_ON(3);
+    
+        LEDMode(int value) {
+            this.val = value;
+        }
+        
+        public int getCodeValue() {
+            return val;
+        }
+
+        private int val;
+    }    
+    
+    // Initialize instance of LED modes in Network Tables
+    NetworkTableEntry LEDModeEntry = tableInstance.getEntry("ledMode");
+    
+    // LED Mode
+    public final void setLEDMode(LEDMode mode) 
+    {
+        LEDModeEntry.setNumber(mode.getCodeValue());
     }
 
     // Check for valid target (disregard is the range/area where target should be ignored)
