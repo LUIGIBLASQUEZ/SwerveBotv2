@@ -56,7 +56,7 @@ public final class Constants {
     public static final int kRearRightTurningCanId = 7;
 
     // Is gyro reversed?
-    public static final boolean kGyroReversed = false;
+    public static final boolean kGyroReversed = true;
   }
 
   //
