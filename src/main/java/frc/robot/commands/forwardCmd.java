@@ -24,7 +24,7 @@ public class forwardCmd extends CommandBase{
       
         // When scheduled, run
         public void execute() {
-          double xSpeed = -1.0;
+          double xSpeed = 1.0;
           double ySpeed = 0.0;
           double rot = 0.0;
     
