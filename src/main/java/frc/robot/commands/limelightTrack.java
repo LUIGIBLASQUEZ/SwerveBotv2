@@ -13,6 +13,9 @@ public class limelightTrack extends CommandBase{
     private DriveTrain m_drive;
     private Limelight m_lime;
     private Chuck m_chuck;
+    double xSpeed = 0.0;
+    double ySpeed = 0.0;
+    double rot = 0.0;
     //private double m_timeout;
     //private final Timer m_timer = new Timer();
     
@@ -30,16 +33,14 @@ public class limelightTrack extends CommandBase{
     }
 
     public void execute() {
-        double xSpeed = 0.0;
-        double ySpeed = 0.0;
-        double rot = -1.0;
+        m_lime.validTarget(0.1);
 
-        if (m_lime.vTar = true) {
+        if (m_lime.vTar == true) {
             if (m_lime.PosX() < 1.5 && m_lime.PosX() > -1.5) {
                 rot = 0.0;
                 m_chuck.cmdPrep();
                 //if (m_timer.get() >= 1.2){
-                  m_chuck.cmdFire();
+                  m_chuck.cmdFire();                  
                 //}
             }
         }
@@ -54,4 +55,15 @@ public class limelightTrack extends CommandBase{
         SwerveModuleState[] moduleStates = DriveConstants.kDriveKinematics.toSwerveModuleStates(speeds);
         m_drive.setModuleStates(moduleStates);
     }
+
+    // If command ends or is interrupted, calls the method
+    public void end(boolean interrupted) {
+        m_drive.setX();
+        m_chuck.stopRun();
+      }
+  
+      // Returns the end of the scheduled command
+      public boolean isFinished() {
+          return (false);
+      }
 }
