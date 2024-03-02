@@ -25,9 +25,9 @@ public class chuckPrepCmd extends CommandBase {
   }
 
   public void execute() {
-    m_chuck.SpeakerShoot();
+    m_chuck.cmdPrep();
     if (m_timer.get() >= 1.2){
-      m_chuck.SpeakerShoot2();
+      m_chuck.cmdFire();
     }
   }
 

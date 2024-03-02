@@ -9,7 +9,7 @@ public class drivechuck extends ParallelCommandGroup{
         // Add your commands in the addCommands() call, e.g.
         // addCommands(new FooCommand(), new BarCommand());
         addCommands(
-          new forwardCmd(drive, 1).andThen(new rotateCmd(drive, 1)),
+          new forwardCmd(drive, 1),
           new chuckPrepCmd(chuck, 5)
         );
     }

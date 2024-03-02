@@ -108,4 +108,14 @@ public class Chuck extends SubsystemBase{
             });
     }
 
+    // Command functions
+    public void cmdPrep() {
+        motor10.set(TalonFXControlMode.PercentOutput, ChuckConstants.speakerspeed);
+        //motor11.set(TalonFXControlMode.PercentOutput, ChuckConstants.speakerspeed);
+    }
+    public void cmdFire() {
+        motor11.set(TalonFXControlMode.PercentOutput, ChuckConstants.speakerspeed);
+        //motor11.set(TalonFXControlMode.PercentOutput, ChuckConstants.speakerspeed);
+    }
+
 }
