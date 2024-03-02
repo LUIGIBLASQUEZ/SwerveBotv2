@@ -42,7 +42,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    candle.setLEDs(0, 255, 0);
     // Runs the Scheduler.  This is responsible for polling buttons, adding newly-scheduled
     // commands, running already-scheduled commands, removing finished or interrupted commands,
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
@@ -59,7 +58,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void disabledPeriodic() {
-  //m_lights.Red();
+    candle.setLEDs(255, 0, 0);
   }
 
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
@@ -82,7 +81,9 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during autonomous. */
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousPeriodic() {
+    candle.setLEDs(0, 0, 255);
+  }
 
   @Override
   public void teleopInit() {
@@ -97,7 +98,9 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+    candle.setLEDs(0, 255, 0);
+  }
 
   @Override
   public void testInit() {

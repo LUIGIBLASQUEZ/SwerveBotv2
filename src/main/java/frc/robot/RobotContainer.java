@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.PS4Controller.Button;
 import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.Constants.OIConstants;
+import frc.robot.commands.drivechuck;
 import frc.robot.commands.driveturndrive;
 import frc.robot.subsystems.DriveTrain;
 //import frc.robot.subsystems.Limelight;
@@ -76,6 +77,7 @@ public class RobotContainer {
 
     m_chooser.setDefaultOption("Wait", new WaitCommand(15));
     m_chooser.addOption("Test", (Command) new driveturndrive(m_robotDrive));
+    m_chooser.addOption("Test2", (Command) new drivechuck(m_robotDrive, m_output));
     SmartDashboard.putData(m_chooser);
   }
 

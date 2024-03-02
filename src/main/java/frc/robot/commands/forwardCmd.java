@@ -20,6 +20,8 @@ public class forwardCmd extends CommandBase{
 
         public void initialize() {
             m_robotDrive.zeroHeading();
+            m_timer.reset();
+            m_timer.start();
         }
       
         // When scheduled, run

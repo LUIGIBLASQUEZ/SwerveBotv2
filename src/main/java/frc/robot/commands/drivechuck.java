@@ -1,0 +1,17 @@
+package frc.robot.commands;
+
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import frc.robot.subsystems.Chuck;
+import frc.robot.subsystems.DriveTrain;
+
+public class drivechuck extends ParallelCommandGroup{
+    public drivechuck(DriveTrain drive, Chuck chuck) {
+        // Add your commands in the addCommands() call, e.g.
+        // addCommands(new FooCommand(), new BarCommand());
+        addCommands(
+          new forwardCmd(drive, 1).andThen(new rotateCmd(drive, 1)),
+          new chuckPrepCmd(chuck, 5)
+        );
+    }
+    
+}
