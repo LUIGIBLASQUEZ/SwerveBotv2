@@ -75,7 +75,7 @@ public class RobotContainer {
             m_robotDrive));
 
     m_chooser.setDefaultOption("Wait", new WaitCommand(15));
-    m_chooser.addOption("Test", (Command) new basicAutonomous());
+    m_chooser.addOption("Test", (Command) new basicAutonomous(m_robotDrive));
     SmartDashboard.putData(m_chooser);
   }
 

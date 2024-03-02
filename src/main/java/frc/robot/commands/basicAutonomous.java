@@ -1,7 +1,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.Command;
+//import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants.DriveConstants;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
@@ -10,20 +10,20 @@ import frc.robot.subsystems.DriveTrain;
 public class basicAutonomous extends CommandBase{
     private DriveTrain m_robotDrive;
 
-    public void basicAuto(DriveTrain drive) {
+    public basicAutonomous(DriveTrain drive) {
         m_robotDrive = drive;
         addRequirements(m_robotDrive);
     }
 
         public void initialize() {
-            //m_robotDrive.zeroHeading();
+            m_robotDrive.zeroHeading();
         }
       
         // When scheduled, run
         public void execute() {
-          double xSpeed = 2.0;
-          double ySpeed = 2.0;
-          double rot = 1.0;
+          double xSpeed = -1.0;
+          double ySpeed = 0.0;
+          double rot = 0.0;
 
           // Like drive command in RobotContainer
           //xSpeed = -MathUtil.applyDeadband(0.5, 0.0);
