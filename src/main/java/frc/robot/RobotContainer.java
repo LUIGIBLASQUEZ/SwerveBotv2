@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
+import frc.robot.commands.basicAutonomous;
 import frc.robot.subsystems.DriveTrain;
 //import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Chuck;
@@ -85,7 +86,7 @@ public class RobotContainer {
             m_robotDrive));
 
     m_chooser.setDefaultOption("Wait", new WaitCommand(15));
-    //m_chooser.addOption("Test", (Command) new testcmd());
+    m_chooser.addOption("Test", (Command) new basicAutonomous());
   }
 
   /**

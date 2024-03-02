@@ -7,7 +7,7 @@ import com.ctre.phoenix.led.*;
 public class Lights extends SubsystemBase {
 
     // Initialize CANdle
-    private final CANdle candle = new CANdle (0);
+    private final CANdle candle = new CANdle (20);
 
     // Light RGBs
     public void ledRed () {
