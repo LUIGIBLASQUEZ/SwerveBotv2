@@ -1,7 +1,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-
+import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants.DriveConstants;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
@@ -12,7 +12,7 @@ public class basicAutonomous extends CommandBase{
 
     public void basicAuto(DriveTrain drive) {
         m_robotDrive = drive;
-        addReq
+        addRequirements(m_robotDrive);
     }
 
         public void initialize() {
