@@ -32,10 +32,11 @@ public class chuckPrepCmd extends CommandBase {
   }
 
   public void end(boolean interrupted) {
-    m_chuck.stopRunUpper();
+    m_chuck.stopRun();
   }
   
   public boolean isFinished() {
+    m_chuck.stopRun();
     return m_timer.get() >= m_timeout;
   }
 }
