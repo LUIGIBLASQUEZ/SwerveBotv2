@@ -1,17 +1,20 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-//import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants.DriveConstants;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.wpilibj.Timer;
 import frc.robot.subsystems.DriveTrain;
 
-public class basicAutonomous extends CommandBase{
+public class forwardCmd extends CommandBase{   
     private DriveTrain m_robotDrive;
+    private final double m_timeout;
+    private final Timer m_timer = new Timer();
 
-    public basicAutonomous(DriveTrain drive) {
+    public forwardCmd(DriveTrain drive, double timeout) {
         m_robotDrive = drive;
+        m_timeout = timeout;
         addRequirements(m_robotDrive);
     }
 
@@ -24,11 +27,6 @@ public class basicAutonomous extends CommandBase{
           double xSpeed = -1.0;
           double ySpeed = 0.0;
           double rot = 0.0;
-
-          // Like drive command in RobotContainer
-          //xSpeed = -MathUtil.applyDeadband(0.5, 0.0);
-          //ySpeed = -MathUtil.applyDeadband(0.5, 0.0);
-          //rot = -MathUtil.applyDeadband(0.5, 0.0);
     
           // Make new ChassisSpeeds object to work with module states
           ChassisSpeeds speeds;
@@ -45,7 +43,7 @@ public class basicAutonomous extends CommandBase{
     
         // Returns the end of the scheduled command
         public boolean isFinished() {
-            return false;
+            return m_timer.get() >= m_timeout;
         }
         
     }
