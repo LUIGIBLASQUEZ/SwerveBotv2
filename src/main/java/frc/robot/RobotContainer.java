@@ -9,10 +9,10 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.PS4Controller.Button;
 import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.Constants.OIConstants;
-import frc.robot.commands.drivechuck;
 import frc.robot.commands.driveturndrive;
+import frc.robot.commands.limelightTrack;
 import frc.robot.subsystems.DriveTrain;
-//import frc.robot.subsystems.Limelight;
+import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Chuck;
 import frc.robot.subsystems.Climber;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -38,7 +38,7 @@ public class RobotContainer {
   private final DriveTrain m_robotDrive = new DriveTrain();
   private final Chuck m_output = new Chuck();
   private final Climber m_climber = new Climber();
-  //private final  Limelight m_lime = new Limelight();
+  private final  Limelight m_lime = new Limelight();
   
   // test
   //private final Lights m_lights = new Lights();
@@ -76,8 +76,8 @@ public class RobotContainer {
             m_robotDrive));
 
     m_chooser.setDefaultOption("Wait", new WaitCommand(15));
-    m_chooser.addOption("Test", (Command) new driveturndrive(m_robotDrive));
-    m_chooser.addOption("Test2", (Command) new drivechuck(m_robotDrive, m_output));
+    m_chooser.addOption("Drive Auto", (Command) new driveturndrive(m_robotDrive));
+    m_chooser.addOption("LimelightTrack", (Command) new limelightTrack(m_robotDrive, m_lime, m_output));
     SmartDashboard.putData(m_chooser);
   }
 
