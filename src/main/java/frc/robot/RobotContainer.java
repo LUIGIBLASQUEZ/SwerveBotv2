@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.Constants.OIConstants;
 import frc.robot.commands.rotateToTarget;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Lights;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Chuck;
 import frc.robot.subsystems.Climber;
@@ -37,7 +38,8 @@ public class RobotContainer {
   private final DriveTrain m_robotDrive = new DriveTrain();
   private final Chuck m_output = new Chuck();
   private final Climber m_climber = new Climber();
-  private final  Limelight m_lime = new Limelight();
+  private final Limelight m_lime = new Limelight();
+  private final Lights m_lights = new Lights();
   
   // test
   //private final Lights m_lights = new Lights();
@@ -135,21 +137,32 @@ public class RobotContainer {
     new JoystickButton(m_operator, 4)
         .onTrue(m_output.SpeakerShoot())
         .onFalse(m_output.stopRunUpper());
-        //.toggleOnTrue(Commands.startEnd(
-        //() -> m_climber.AccuateUp(),
-        //() -> m_climber.AcctuateDown(),
-        //m_climber));
 
             // This button for the OPERATOR will shoot the amp motor    
     new JoystickButton(m_operator, 5)
         .onTrue(m_output.AmpShoot())
         .onFalse(m_output.stopRun());
 
+            // Supposed Accuate Function (OPERATOR)
     new JoystickButton(m_operator, 12)
         .toggleOnTrue(Commands.startEnd(
         () -> m_climber.AccuateUp(),
         () -> m_climber.AcctuateDown(),
         m_climber));
+
+            // Light function for OPERATOR lights speaker motor
+    new JoystickButton(m_operator, 8)
+        .toggleOnTrue(Commands.startEnd(
+        () -> m_lights.ledPurple(),
+        () -> m_lights.ledGreen(),
+        m_lights));
+
+            // Light function for OPERATOR lights amp motor
+    new JoystickButton(m_operator, 7)
+        .toggleOnTrue(Commands.startEnd(
+        () -> m_lights.ledYellow(),
+        () -> m_lights.ledGreen(),
+        m_lights));
   }
 
   /**
