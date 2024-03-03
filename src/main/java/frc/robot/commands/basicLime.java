@@ -9,7 +9,7 @@ import frc.robot.subsystems.Chuck;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Limelight;
 
-public class rotateToTarget extends CommandBase{
+public class basicLime extends CommandBase{
     private DriveTrain m_robotDrive;
     private final Limelight m_lime;
     private final Chuck m_chuck;
@@ -18,7 +18,7 @@ public class rotateToTarget extends CommandBase{
     private double ySpeed = 0.0;
     private double rot = 0.0;
 
-    public rotateToTarget(DriveTrain drive, Limelight lime, Chuck chuck) {
+    public basicLime(DriveTrain drive, Limelight lime, Chuck chuck) {
         m_robotDrive = drive;
         m_lime = lime;
         m_chuck = chuck;
