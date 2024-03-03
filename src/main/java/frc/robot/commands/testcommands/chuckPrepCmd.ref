@@ -2,7 +2,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands;
+package frc.robot.commands.testcommands;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -27,7 +27,7 @@ public class chuckPrepCmd extends CommandBase {
   public void execute() {
     m_chuck.cmdPrep();
     if (m_timer.get() >= 1.2){
-      m_chuck.cmdFire();
+    //  m_chuck.cmdFire();
     }
   }
 

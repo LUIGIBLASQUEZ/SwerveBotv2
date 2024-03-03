@@ -1,6 +1,7 @@
-package frc.robot.commands;
+package frc.robot.commands.testcommands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.commands.rotateCmd;
 import frc.robot.subsystems.Chuck;
 import frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.DriverStation;

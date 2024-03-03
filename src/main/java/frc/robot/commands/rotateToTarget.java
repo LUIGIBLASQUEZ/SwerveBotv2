@@ -14,6 +14,9 @@ public class rotateToTarget extends CommandBase{
     private final Limelight m_lime;
     private final Chuck m_chuck;
     private final Timer m_timer = new Timer();
+    private double xSpeed = 0.0;
+    private double ySpeed = 0.0;
+    private double rot = 0.0;
 
     public rotateToTarget(DriveTrain drive, Limelight lime, Chuck chuck) {
         m_robotDrive = drive;
@@ -31,10 +34,13 @@ public class rotateToTarget extends CommandBase{
         // When scheduled, run
         public void execute() {
           m_lime.validTarget(0.1);
-          double xSpeed = 0.0;
-          double ySpeed = 0.0;
-          double rot = -1.0;
-    
+          xSpeed = 1;
+          
+          if (m_timer.get() >= 1.2){
+            xSpeed = 0;
+            rot = -.75;
+            m_chuck.cmdPrep();
+          }
           // Make new ChassisSpeeds object to work with module states
           ChassisSpeeds speeds;
           speeds = new ChassisSpeeds(xSpeed, ySpeed, rot);
@@ -45,11 +51,10 @@ public class rotateToTarget extends CommandBase{
     
         // If command ends or is interrupted, calls the method
         public void end(boolean interrupted) {
-          m_robotDrive.setX();
-           m_chuck.cmdPrep();
-                if (m_timer.get() >= 1.2){
-                  m_chuck.cmdFire();
-                } 
+          m_chuck.cmdPrep();
+          m_robotDrive.setX();   
+          m_chuck.cmdFire(m_timer,1);
+          //m_chuck.stopRun();
         }
     
         // Returns the end of the scheduled command

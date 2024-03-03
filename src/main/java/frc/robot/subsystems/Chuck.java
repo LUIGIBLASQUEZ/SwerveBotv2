@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.revrobotics.CANSparkMax;
@@ -113,8 +114,14 @@ public class Chuck extends SubsystemBase{
         motor10.set(TalonFXControlMode.PercentOutput, ChuckConstants.speakerspeed);
         //motor11.set(TalonFXControlMode.PercentOutput, ChuckConstants.speakerspeed);
     }
-    public void cmdFire() {
+    public void cmdFire(Timer timer, double timeout) {
+        timer.reset();
+        timer.start();
         motor11.set(TalonFXControlMode.PercentOutput, ChuckConstants.speakerspeed);
+        if (timer.get() >= timeout){
+            motor11.set(TalonFXControlMode.PercentOutput, 0);
+            motor10.set(TalonFXControlMode.PercentOutput, 0);
+        }
         //motor11.set(TalonFXControlMode.PercentOutput, ChuckConstants.speakerspeed);
     }
 
