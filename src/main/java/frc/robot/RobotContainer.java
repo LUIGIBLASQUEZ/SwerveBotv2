@@ -83,15 +83,7 @@ public class RobotContainer {
     SmartDashboard.putData(m_chooser);
   }
 
-  /**
-   * Use this method to define your button->command mappings. Buttons can be
-   * created by
-   * instantiating a {@link edu.wpi.first.wpilibj.GenericHID} or one of its
-   * subclasses ({@link
-   * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then calling
-   * passing it to a
-   * {@link JoystickButton}.
-   */
+  // Button mapping and config, pass to JoystickButton
   private void configureButtonBindings() {
 
             // This button for the DRIVER will stop the robot's drive
@@ -113,32 +105,32 @@ public class RobotContainer {
         () -> m_climber.AcctuateDown(),
         m_climber));
 
-            // This button for the OPERATOR will intake the speaker motor
+            // This button for the OPERATOR will intake the speaker motors
     new JoystickButton(m_operator,2)
         .onTrue(m_output.IntakeRing())
         .onFalse(m_output.stopRun());
 
-            // amp output
+            // This button for the OPERATOR will fire the amp motor
     new JoystickButton(m_operator,3)
         .onTrue(m_output.AmpShoot())
         .onFalse(m_output.stopRunAmp());
 
-            // amp intake
+            // This button for the OPERATOR will intake the amp motor
     new JoystickButton(m_operator,1)
         .onTrue(m_output.AmpIntake())
         .onFalse(m_output.stopRunAmp());
             
-            // Fire motor
+            // This button for the OPERATOR fires the lower speaker motor
     new JoystickButton(m_operator, 6)
         .onTrue(m_output.SpeakerShoot2())
         .onFalse(m_output.stopRunLower());
         
-            // Prep motor
+            // This button for the OPERATOR fires the upper speaker motor (prep)
     new JoystickButton(m_operator, 4)
         .onTrue(m_output.SpeakerShoot())
         .onFalse(m_output.stopRunUpper());
 
-            // This button for the OPERATOR will shoot the amp motor    
+            // This button for the OPERATOR will fire the amp motor    
     new JoystickButton(m_operator, 5)
         .onTrue(m_output.AmpShoot())
         .onFalse(m_output.stopRun());

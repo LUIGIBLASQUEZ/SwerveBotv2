@@ -49,8 +49,6 @@ public class Chuck extends SubsystemBase{
             });
     }
 
-//hi
-
     public CommandBase SpeakerShoot() {
         return run(
             () -> {
