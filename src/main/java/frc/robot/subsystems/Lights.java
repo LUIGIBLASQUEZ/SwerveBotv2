@@ -2,6 +2,8 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.led.*;
+import com.ctre.phoenix.led.FireAnimation;
+import frc.robot.Constants.LightConstants;
 
 
 public class Lights extends SubsystemBase {
@@ -42,6 +44,11 @@ public class Lights extends SubsystemBase {
       public void ledGreen () {
         candle.setLEDs(0,255,0);
       }
+
+      public void climberTheme() {
+        FireAnimation fireAnimation = new FireAnimation(LightConstants.brightness, LightConstants.speed, LightConstants.numLed, LightConstants.sparking, LightConstants.cooling);
+
+        candle.animate(fireAnimation);
+      }
  
-    
 }

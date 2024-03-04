@@ -132,6 +132,14 @@ public final class Constants {
     public static final double RingPick = 2;
   }
 
+  public static final class LightConstants {
+    public static final double brightness = 1.0;
+    public static final double speed = 0.5;
+    public static final int numLed = 20;
+    public static final double sparking = 0.7;
+    public static final double cooling = 0.3;
+  }
+
   public static final class AutoConstants {
     public static final double kMaxSpeedMetersPerSecond = 3;
     public static final double kMaxAccelerationMetersPerSecondSquared = 3;

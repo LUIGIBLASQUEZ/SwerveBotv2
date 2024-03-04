@@ -15,17 +15,19 @@ public class Climber extends SubsystemBase{
     // On Pneumatic Hub ports 0 and 1
     private final DoubleSolenoid sole1 = pHub.makeDoubleSolenoid(3,1);
     private final DoubleSolenoid sole2 = pHub.makeDoubleSolenoid(14,8);
+    private final Lights m_lights = new Lights();
 
     public void AccuateUp() {
         state = DoubleSolenoid.Value.kForward;
         sole1.set(state);
         sole2.set(state);
+        m_lights.climberTheme();
     }
 
     public void AcctuateDown() {
         state = DoubleSolenoid.Value.kReverse;
         sole1.set(state);
-        
         sole2.set(state);
+        m_lights.climberTheme();
     }    
 }
