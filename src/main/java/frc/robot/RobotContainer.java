@@ -164,17 +164,41 @@ public class RobotContainer {
     if (m_joystick1.getTrigger() == true)
     {
         // Probably have a checker for the correct speaker april tag id
-        if (m_lime.PosX() > 1.5)
-        {
-            m_robotDrive.drive(0, 0, 0.2, true, true).until(m_lime.PosX() < 1.5);
+        if (m_lime.PosX() > 1.5) {
+            while (m_lime.PosX() > 1.5) {
+                if (m_lime.PosY() > 2) {
+                    while (m_lime.PosY() > 2) {
+                        m_robotDrive.drive(-0.2, 0, 0, true, true);
+                    }
+                }
+                else if (m_lime.PosY() < -2) {
+                    while (m_lime.PosY() < -2) {
+                        m_robotDrive.drive(0.2, 0, 0, true, true);
+                    }
+                }
+                m_robotDrive.drive(0, 0, 0.2, true, true);
+            }
         }
-        else if (m_lime.PosX() < -1.5)
-        {
-            m_robotDrive.drive(0, 0, -0.2, true, true).until(m_lime.PosX() > -1.5);            }
+        else if (m_lime.PosX() < -1.5) {
+            while (m_lime.PosX() < 1.5) {
+                if (m_lime.PosY() > 2) {
+                    while (m_lime.PosY() > 2) {
+                        m_robotDrive.drive(-0.2, 0, 0, true, true);
+                    }
+                }
+                else if (m_lime.PosY() < -2) {
+                    while (m_lime.PosY() < -2) {
+                        m_robotDrive.drive(0.2, 0, 0, true, true);
+                    }
+                }
+                m_robotDrive.drive(0, 0, 0.2, true, true);
+            }      
         }
     }
 
-  /**
+    }
+
+/**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *
    * @return the command to run in autonomous
