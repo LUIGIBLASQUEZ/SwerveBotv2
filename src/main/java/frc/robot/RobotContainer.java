@@ -155,9 +155,50 @@ public class RobotContainer {
         () -> m_lights.ledYellow(),
         () -> m_lights.ledGreen(),
         m_lights));
-  }
 
-  /**
+    //  !! SKETCHY TEST COMMANDS !!
+
+        // Potential button for the DRIVER where upon holding the trigger,
+        // the DriveTrain will use the position of the target april tag
+        // as a guide to position itself accurately to the target.
+    if (m_joystick1.getTrigger() == true)
+    {
+        // Probably have a checker for the correct speaker april tag id
+        if (m_lime.PosX() > 1.5) {
+            while (m_lime.PosX() > 1.5) {
+                if (m_lime.PosY() > 2) {
+                    while (m_lime.PosY() > 2) {
+                        m_robotDrive.drive(-0.2, 0, 0, true, true);
+                    }
+                }
+                else if (m_lime.PosY() < -2) {
+                    while (m_lime.PosY() < -2) {
+                        m_robotDrive.drive(0.2, 0, 0, true, true);
+                    }
+                }
+                m_robotDrive.drive(0, 0, 0.2, true, true);
+            }
+        }
+        else if (m_lime.PosX() < -1.5) {
+            while (m_lime.PosX() < 1.5) {
+                if (m_lime.PosY() > 2) {
+                    while (m_lime.PosY() > 2) {
+                        m_robotDrive.drive(-0.2, 0, 0, true, true);
+                    }
+                }
+                else if (m_lime.PosY() < -2) {
+                    while (m_lime.PosY() < -2) {
+                        m_robotDrive.drive(0.2, 0, 0, true, true);
+                    }
+                }
+                m_robotDrive.drive(0, 0, 0.2, true, true);
+            }      
+        }
+    }
+
+    }
+
+/**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *
    * @return the command to run in autonomous
