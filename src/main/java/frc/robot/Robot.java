@@ -94,12 +94,13 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    candle.setLEDs(0, 255, 0);
   }
 
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    candle.setLEDs(0, 255, 0);
+    //candle.setLEDs(0, 255, 0);
   }
 
   @Override
