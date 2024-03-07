@@ -112,6 +112,12 @@ public class Chuck extends SubsystemBase{
         motor10.set(TalonFXControlMode.PercentOutput, ChuckConstants.speakerspeed);
         //motor11.set(TalonFXControlMode.PercentOutput, ChuckConstants.speakerspeed);
     }
+
+    public void cmdFireNT() {
+        motor11.set(TalonFXControlMode.PercentOutput, ChuckConstants.speakerspeed);
+        //motor11.set(TalonFXControlMode.PercentOutput, ChuckConstants.speakerspeed);
+    }
+
     public void cmdFire(Timer timer, double timeout) {
         timer.reset();
         timer.start();

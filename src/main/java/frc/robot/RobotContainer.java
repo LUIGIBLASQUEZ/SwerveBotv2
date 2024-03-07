@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.PS4Controller.Button;
 import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.Constants.OIConstants;
 import frc.robot.commands.basicLime;
+import frc.robot.commands.basicLime2;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Lights;
 import frc.robot.subsystems.Limelight;
@@ -80,6 +81,7 @@ public class RobotContainer {
     m_chooser.addOption("LimeTrack vS", (Command) new basicLime(m_robotDrive, m_lime, m_output)
     .andThen(new WaitCommand(1.5))
     .andThen(m_output.stopRun()));
+    m_chooser.addOption("New Limelight", (Command) new basicLime2(m_robotDrive, m_lime, m_output));
     SmartDashboard.putData(m_chooser);
   }
 
